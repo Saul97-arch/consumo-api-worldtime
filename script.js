@@ -110,7 +110,7 @@ const renderGMT = (items) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        items[i].innerHTML = zeroToRight(res.datetime.substr(-6));
+        items[i].innerHTML = "GMT : " + zeroToRight(res.datetime.substr(-6));
       });
   }
 };
