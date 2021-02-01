@@ -42,5 +42,6 @@ fetch("https://worldtimeapi.org/api/ip")
     console.log(data);
     document.querySelector(".place").innerHTML = data.timezone;
     document.querySelector(".ip").innerHTML = data.client_ip;
+    document.querySelector(".utc").innerHTML = "GMT: " + data.utc_offset;
     addsec(data.datetime);
   });

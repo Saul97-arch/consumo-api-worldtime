@@ -68,8 +68,8 @@ const renderDate = (items) => {
     )
       .then((res) => res.json())
       .then((res1) => {
-        // console.log(res1);
-        items[i].innerHTML = res1.datetime.substr(0, 10);
+        console.log(res1);
+        // items[i].innerHTML = res1.datetime.substr(0, 10);
       });
   }
 };

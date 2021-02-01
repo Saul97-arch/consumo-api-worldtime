@@ -111,7 +111,8 @@ selectRegion.addEventListener("change", () => {
       document.querySelector(".place").innerHTML = "Carregando...";
 
       document.querySelector(".place").innerHTML = valCont + "/" + valReg;
-      clearInterval(Time);
+      document.querySelector(".utc").innerHTML = "GMT: " + data.utc_offset;
+      clearInterval(Time); 
       addsec(data.datetime);
     });
 });
