@@ -1,4 +1,4 @@
-const urlTimeZone = `http://worldtimeapi.org/api/timezone/`;
+const urlTimeZone = `https://worldtimeapi.org/api/timezone/`;
 
 const time_zone = document.querySelectorAll(".timezone");
 const date = document.querySelectorAll(".date");
@@ -64,7 +64,7 @@ const breaked = breakInFowardSlash(pos_country);
 const renderDate = (items) => {
   for (let i = 0; i < 12; i++) {
     fetch(
-      `http://worldtimeapi.org/api/timezone/${breaked[i][0]}/${breaked[i][1]}`
+      `https://worldtimeapi.org/api/timezone/${breaked[i][0]}/${breaked[i][1]}`
     )
       .then((res) => res.json())
       .then((res1) => {
@@ -93,7 +93,7 @@ const zeroAEsquerda = (n) => {
 const renderHour = (items) => {
   for (let i = 0; i < 12; i++) {
     fetch(
-      `http://worldtimeapi.org/api/timezone/${breaked[i][0]}/${breaked[i][1]}`
+      `https://worldtimeapi.org/api/timezone/${breaked[i][0]}/${breaked[i][1]}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -106,7 +106,7 @@ const renderHour = (items) => {
 const renderGMT = (items) => {
   for (let i = 0; i < 12; i++) {
     fetch(
-      `http://worldtimeapi.org/api/timezone/${breaked[i][0]}/${breaked[i][1]}`
+      `https://worldtimeapi.org/api/timezone/${breaked[i][0]}/${breaked[i][1]}`
     )
       .then((res) => res.json())
       .then((res) => {

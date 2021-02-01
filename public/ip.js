@@ -36,7 +36,7 @@ function addsec(objeto) {
   }, 1000);
 }
 
-fetch("http://worldtimeapi.org/api/ip")
+fetch("https://worldtimeapi.org/api/ip")
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
