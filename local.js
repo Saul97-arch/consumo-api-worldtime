@@ -2,30 +2,34 @@ const selectContinent = document.getElementById("continente");
 const selectRegion = document.getElementById("regions");
 
 const split = (str, sep) => {
-  
-  
   return str.split(sep);
+};
+
+const zeroAEsquerda = (n) => {
+  if (n < 10) {
+    return "0" + n;
+  }
+  return n;
 };
 
 // Função pega do projeto da faculdade iv2 no github
 function quebra(obj) {
-  var separa = obj.split("/")
+  var separa = obj.split("/");
 
-  var tmz = separa[0]
+  var tmz = separa[0];
   separa.shift();
-  var regiao = separa
+  var regiao = separa;
   if (regiao.length > 1) {
-      regiao = regiao.join("/")
+    regiao = regiao.join("/");
   } else {
-      regiao = regiao[0]
-      if (regiao === undefined) {
-          regiao = tmz
-      }
+    regiao = regiao[0];
+    if (regiao === undefined) {
+      regiao = tmz;
+    }
   }
 
-  const regi = [tmz, regiao]
-  return regi
-
+  const regi = [tmz, regiao];
+  return regi;
 }
 
 selectContinent.addEventListener("change", () => {
@@ -40,9 +44,9 @@ selectContinent.addEventListener("change", () => {
           selectRegion.removeChild(selectRegion.lastChild);
         }
       }
-      
+
       const uniqueValues = [];
-      
+
       for (let i = 0; i < data.length; i++) {
         let splitedVal = quebra(data[i]);
         //Pegar o segundo valor splitado e jogar no select regions
@@ -60,8 +64,9 @@ selectContinent.addEventListener("change", () => {
         selectRegion.appendChild(opt);
       }
     });
-    
-  });
+});
+
+let Time;
 
 function addsec(objeto) {
   let ano = parseInt(objeto.substring(0, 4));
@@ -74,22 +79,22 @@ function addsec(objeto) {
 
   let Cdata = new Date(ano, mes - 1, dia, h, m, s);
 
-  setInterval(function () {
+  Time = setInterval(function () {
     let auxi = Cdata.getSeconds();
     Cdata.setSeconds(auxi + 1);
-    
-    document.querySelector("time-data").innerHTML =
-      Cdata.getDate() +
+    document.querySelector(".time").innerHTML = "carregando...";
+    document.querySelector(".time").innerHTML =
+      zeroAEsquerda(Cdata.getDate()) +
       "/" +
-      (Cdata.getMonth() + 1) +
+      (zeroAEsquerda(Cdata.getMonth() + 1)) +
       "/" +
       Cdata.getFullYear() +
       "<br>" +
-      Cdata.getHours() +
+      zeroAEsquerda(Cdata.getHours()) +
       ":" +
-      Cdata.getMinutes() +
+      zeroAEsquerda(Cdata.getMinutes()) +
       ":" +
-      Cdata.getSeconds() +
+      zeroAEsquerda(Cdata.getSeconds()) +
       "s";
   }, 1000);
 }
@@ -102,7 +107,11 @@ selectRegion.addEventListener("change", () => {
   fetch(`https://worldtimeapi.org/api/timezone/${valCont}/${valReg}`)
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data);
+      console.log(data);
+      document.querySelector(".place").innerHTML = "Carregando...";
 
+      document.querySelector(".place").innerHTML = valCont + "/" + valReg;
+      clearInterval(Time);
+      addsec(data.datetime);
     });
 });
